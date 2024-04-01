@@ -1,3 +1,4 @@
+import time
 import gpio
 
 __GPIO_PIN_MUL_STONES_IN_ADDRESS_START__ = 0
@@ -23,6 +24,8 @@ def write_address(address: int, direction_out: bool):
 
 
 def init_stones():
+    gpio.gpio_init_mode()
+
     for i in range(__GPIO_PIN_MUL_ADDRESS_SIZE__):
         gpio.set_pin_as_output(__GPIO_PIN_MUL_STONES_IN_ADDRESS_START__ + i)
         gpio.set_pin_as_output(__GPIO_PIN_MUL_STONES_OUT_ADDRESS_START__ + i)
@@ -42,4 +45,5 @@ def get_stones() -> list[(int, int)]:
 def get_stone(x: int, y: int) -> bool:
     write_address(x, True)
     write_address(y, False)
+    time.sleep(0.001)
     return gpio.read_pin(__GPIO_PIN_STONES_IN_ADDRESS__)
