@@ -48,6 +48,7 @@ def print_board(stones_list: list[(int, int)]):
                 print("X", end="\t")
             else:
                 print(" ", end="\t")
+    print()
 
 def handle_args():
     parser = argparse.ArgumentParser(description="Test script for the Go-Board")
