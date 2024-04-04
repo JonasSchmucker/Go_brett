@@ -55,7 +55,7 @@ def handle_args():
                         help="Size of milliseconds to wait. Default is " + str(__MAX_BOARDSIZE__) + ", also accepts 9 and 13.")
     parser.add_argument("-t", "--test", type=int, help="Test by setting the given GPIO Pin high")
     return parser.parse_args()
-
+"""
 def init_stones():
     return
 
@@ -66,7 +66,7 @@ def get_stones():
             if random.random() < 0.1:
                 stones_list += [(x, y)]
     return stones_list
-
+"""
 
 if __name__ == "__main__":
     main()

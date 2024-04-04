@@ -68,8 +68,8 @@ def init_stones():
 
 def get_stones() -> list[(int, int)]:
     stones = list()
-    for x in range(__GPIO_MUL_MAX_ADDRESS__):
-        for y in range(__GPIO_MUL_MAX_ADDRESS__):
+    for x in range(__GPIO_BOARD_SIZE__):
+        for y in range(__GPIO_BOARD_SIZE__):
             if get_stone(x, y):
                 stones += [(x, y)]
     return stones
