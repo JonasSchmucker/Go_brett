@@ -56,6 +56,12 @@ def init_stones():
         gpio.set_pin_as_output(__GPIO_PIN_MUL_STONES_IN_ADDRESS_START__ + i)
         gpio.set_pin_as_output(__GPIO_PIN_MUL_STONES_OUT_ADDRESS_START__ + i)
 
+    gpio.set_pin_as_output(__GPIO_PIN_MUL_EN_1_IN__)
+    gpio.set_pin_as_output(__GPIO_PIN_MUL_EN_2_IN__)
+    gpio.set_pin_as_output(__GPIO_PIN_MUL_EN_1_OUT__)
+    gpio.set_pin_as_output(__GPIO_PIN_MUL_EN_2_OUT__)
+    gpio.set_pin_as_input(__GPIO_PIN_STONES_IN_ADDRESS__)
+
     write_address(0, True)
     write_address(0, False)
 
