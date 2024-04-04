@@ -38,16 +38,16 @@ def print_board(stones_list: list[(int, int)]):
     start = int((__MAX_BOARDSIZE__ - size) / 2)
     end = start + size
     for y in range(size):
-        print(y + 1, end="")
+        print("\t" + str(y + 1), end="")
     print()
         
     for x in range(start, end):
         print("\n" + str(x + 1) + "\t", end="")
         for y in range(start, end):
             if (x, y) in stones_list:
-                print("X", end="")
+                print("X", end="\t")
             else:
-                print(" ", end="")
+                print(" ", end="\t")
 
 def handle_args():
     parser = argparse.ArgumentParser(description="Test script for the Go-Board")
