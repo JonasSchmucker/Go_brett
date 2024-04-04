@@ -1,7 +1,8 @@
 #! /usr/bin/python3
 
 import time
-import stones, leds, gpio
+import stones, gpio
+# import leds
 import argparse
 import random
 
@@ -9,8 +10,8 @@ import random
 __MAX_BOARDSIZE__ = 19
 
 def loop():
-    stones_list = get_stones()
-    # stones_list = stones.get_stones()
+    # stones_list = get_stones()
+    stones_list = stones.get_stones()
     print_board(stones_list)
 
 def main():
@@ -26,8 +27,8 @@ def main():
     global size
 
     size = args.size
-    init_stones()
-    # stones.init_stones()
+    # init_stones()
+    stones.init_stones()
 
     while True:
         loop()
