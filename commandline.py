@@ -39,7 +39,6 @@ def print_board(stones_list: list[(int, int)]):
     end = start + size
     for y in range(size):
         print("\t" + str(y + 1), end="")
-    print()
         
     for x in range(start, end):
         print("\n" + str(x + 1) + "\t", end="")
