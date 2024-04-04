@@ -1,7 +1,7 @@
 #! /usr/bin/python3
 
 import time
-# import stones, leds
+import stones, leds, gpio
 import argparse
 import random
 
@@ -15,6 +15,14 @@ def loop():
 
 def main():
     args = handle_args()
+    if args.test:
+        print("Testing GPIO " + str(args.test))
+        gpio.gpio_init_mode()
+        gpio.set_pin_as_output(args.test)
+        gpio.set_pin_high(args.test)
+        print("sleeping for 5 minutes")
+        time.sleep(5 * 60)
+
     global size
 
     size = args.size
@@ -44,6 +52,7 @@ def handle_args():
     parser = argparse.ArgumentParser(description="Test script for the Go-Board")
     parser.add_argument("-s", "--size", type=int, choices=[9, 13, __MAX_BOARDSIZE__], default=__MAX_BOARDSIZE__,
                         help="Size of milliseconds to wait. Default is " + str(__MAX_BOARDSIZE__) + ", also accepts 9 and 13.")
+    parser.add_argument("-t", "--test", type=int, help="Test by setting the given GPIO Pin high")
     return parser.parse_args()
 
 def init_stones():
