@@ -77,5 +77,5 @@ def get_stones() -> list[(int, int)]:
 def get_stone(x: int, y: int) -> bool:
     write_address(x, True)
     write_address(y, False)
-    time.sleep(0.001)
+    time.sleep(1)
     return gpio.read_pin(__GPIO_PIN_STONES_IN_ADDRESS__)
