@@ -38,6 +38,8 @@ def main():
                     + ", linear ID " + str(address_array[i])
                     + ", GPIO ID " + str(pins_to_linear.get_inverted_mapped_value(address_array[i]))
                     + " to " + set_to)
+            print(current_address_bit)
+            print(address & current_address_bit)
             current_address_bit << 1
         # gpio.set_pin_high(args.test)
         # print("sleeping for 5 minutes")
