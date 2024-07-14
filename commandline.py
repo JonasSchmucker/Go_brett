@@ -53,7 +53,7 @@ def main():
                 level = "high"
             else:
                 level = "low"
-            print("Channel " + str(pins_to_linear.get_mapped_value(output)) + " is " + level)
+            print("Channel " + str(output) + " is " + level)
         
         # pull_down_lines()
 
