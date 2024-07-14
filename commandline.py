@@ -21,11 +21,12 @@ def main():
     gpio.gpio_init_mode()
 
     address = 0
+    init_lines()
 
     while True:
         print("Testing Multiplexer output " + str(address))
 
-        init_lines()
+        # init_lines()
 
         current_address_bit = 1
         for i in range(adress_size):
@@ -54,7 +55,7 @@ def main():
                 level = "low"
             print("Channel " + str(pins_to_linear.get_mapped_value(output)) + " is " + level)
         
-        pull_down_lines()
+        # pull_down_lines()
 
 
         time.sleep(1)
