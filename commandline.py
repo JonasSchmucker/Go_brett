@@ -25,11 +25,11 @@ def main():
 
         address = args.test
         current_address_bit = 1
-        for i in range(4):
-        if address & current_address_bit:
-            gpio.set_pin_high(pins_to_linear.get_inverted_mapped_value(address_array[i])) # counting from zero
-        else:
-            gpio.set_pin_low(pins_to_linear.get_inverted_mapped_value(address_array[i])) # counting from zero
+        for i in range(adress_size):
+            if address & current_address_bit:
+                gpio.set_pin_high(pins_to_linear.get_inverted_mapped_value(address_array[i])) # counting from zero
+            else:
+                gpio.set_pin_low(pins_to_linear.get_inverted_mapped_value(address_array[i])) # counting from zero
         current_address_bit << 1
         # gpio.set_pin_high(args.test)
         # print("sleeping for 5 minutes")
