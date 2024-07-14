@@ -12,23 +12,21 @@ def loop():
     stones_list = stones.get_stones()
     print_board(stones_list)
 
+adress_size = 4
+address_array = [23, 24, 25, 27]
+output_array = [14, 15, 16, 17, 18]
+
 def main():
     args = handle_args()
     gpio.gpio_init_mode()
-
-    adress_size = 4
-    address_array = [23, 24, 25, 27]
-    output_array = [14, 15, 16, 17, 18]
-    for i in range(adress_size):
-        gpio.set_pin_as_output(pins_to_linear.get_inverted_mapped_value(address_array[i]))
-
-    for output in output_array:
-        gpio.set_pin_as_input(pins_to_linear.get_inverted_mapped_value(output))
 
     address = 0
 
     while True:
         print("Testing Multiplexer output " + str(address))
+
+        init_lines()
+
         current_address_bit = 1
         for i in range(adress_size):
             set_to = "error"
@@ -55,11 +53,16 @@ def main():
             else:
                 level = "low"
             print("Channel " + str(pins_to_linear.get_mapped_value(output)) + " is " + level)
+        
+        pull_down_lines()
+
+
         time.sleep(1)
         address += 1
         if address == 16:
             address = 0
 
+    """
     global size
 
     size = args.size
@@ -69,7 +72,19 @@ def main():
     while True:
         loop()
         time.sleep(0.5)
+    """
+def init_lines():
+    for i in range(adress_size):
+        gpio.set_pin_as_output(pins_to_linear.get_inverted_mapped_value(address_array[i]))
+
+    for output in output_array:
+        gpio.set_pin_as_input(pins_to_linear.get_inverted_mapped_value(output))
     
+def pull_down_lines():
+    for key in pins_to_linear.pin_to_linear_mapping:
+        gpio.set_pin_as_output(key)
+        gpio.set_pin_low()
+
 def print_board(stones_list: list[(int, int)]):
     start = int((__MAX_BOARDSIZE__ - size) / 2)
     end = start + size
