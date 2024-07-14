@@ -63,4 +63,4 @@ if __name__ == "__main__":
     test_keys = [1, 5, 10, 11]
     for key in test_keys:
         print(f"Key: {key}, Mapped Value: {get_mapped_value(key)}")
-        print(f"Key: {key}, Inverted Mapped Value: {get_inverted_mapped_value(key)}")
+        print(f"Key: {get_mapped_value(key)}, Inverted Mapped Value: {get_inverted_mapped_value(get_mapped_value(key))}")
