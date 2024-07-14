@@ -26,10 +26,18 @@ def main():
         address = args.test
         current_address_bit = 1
         for i in range(adress_size):
+            set_to = "error"
             if address & current_address_bit:
+                set_to = "high"
                 gpio.set_pin_high(pins_to_linear.get_inverted_mapped_value(address_array[i])) # counting from zero
             else:
+                set_to = "low"
                 gpio.set_pin_low(pins_to_linear.get_inverted_mapped_value(address_array[i])) # counting from zero
+            
+            print("Setting Pin with adress index " + str(i) 
+                    + ", linear ID " + str(address_array[i])
+                    + ", GPIO ID " + str(pins_to_linear.get_inverted_mapped_value(address_array[i]))
+                    + " to " + set_to)
         current_address_bit << 1
         # gpio.set_pin_high(args.test)
         # print("sleeping for 5 minutes")
@@ -41,7 +49,7 @@ def main():
 
     size = args.size
     # init_stones()
-    # stones.init_stones()
+    stones.init_stones()
 
     while True:
         loop()
