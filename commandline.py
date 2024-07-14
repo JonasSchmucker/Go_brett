@@ -40,7 +40,7 @@ def main():
     global size
 
     size = args.size
-    init_stones()
+    # init_stones()
     # stones.init_stones()
 
     while True:
