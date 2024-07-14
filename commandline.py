@@ -50,7 +50,7 @@ def main():
 
             for output in output_array:
                 level = ""
-                if gpio.read_pin(pins_to_linear.get_inverted_mapped_value(output))
+                if gpio.read_pin(pins_to_linear.get_inverted_mapped_value(output)):
                     level = "high"
                 else:
                     level = "low"
