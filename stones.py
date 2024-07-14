@@ -46,7 +46,7 @@ def write_address_8(address: int, direction_out: bool):
             gpio.set_pin_high(address_base + i) # counting from zero
         else:
             gpio.set_pin_low(address_base + i) # counting from zero
-        current_address_bit << 1
+        current_address_bit = current_address_bit << 1
 
 
 def init_stones():

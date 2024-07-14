@@ -40,7 +40,7 @@ def main():
                     + " to " + set_to)
             print(current_address_bit)
             print(address & current_address_bit)
-            current_address_bit << 1
+            current_address_bit = current_address_bit << 1
         # gpio.set_pin_high(args.test)
         # print("sleeping for 5 minutes")
         # time.sleep(5 * 60)
