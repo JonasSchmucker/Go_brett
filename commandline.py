@@ -83,7 +83,7 @@ def init_lines():
 def pull_down_lines():
     for key in pins_to_linear.pin_to_linear_mapping:
         gpio.set_pin_as_output(key)
-        gpio.set_pin_low()
+        gpio.set_pin_low(key)
 
 def print_board(stones_list: list[(int, int)]):
     start = int((__MAX_BOARDSIZE__ - size) / 2)
