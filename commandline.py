@@ -20,32 +20,42 @@ def main():
 
         adress_size = 4
         address_array = [23, 24, 25, 27]
+        output_array = [14, 15, 16, 17, 18]
         for i in range(adress_size):
             gpio.set_pin_as_output(pins_to_linear.get_inverted_mapped_value(address_array[i]))
 
-        address = args.test
-        current_address_bit = 1
-        for i in range(adress_size):
-            set_to = "error"
-            if address & current_address_bit:
-                set_to = "high"
-                gpio.set_pin_high(pins_to_linear.get_inverted_mapped_value(address_array[i])) # counting from zero
-            else:
-                set_to = "low"
-                gpio.set_pin_low(pins_to_linear.get_inverted_mapped_value(address_array[i])) # counting from zero
-            
-            print("Setting Pin with adress index " + str(i) 
-                    + ", linear ID " + str(address_array[i])
-                    + ", GPIO ID " + str(pins_to_linear.get_inverted_mapped_value(address_array[i]))
-                    + " to " + set_to)
-            print(current_address_bit)
-            print(address & current_address_bit)
-            current_address_bit = current_address_bit << 1
-        # gpio.set_pin_high(args.test)
-        # print("sleeping for 5 minutes")
-        # time.sleep(5 * 60)
+        for output in output_array:
+            gpio.set_pin_as_input(pins_to_linear.get_inverted_mapped_value(output))
+
         while True:
-            _ = 0
+            address = args.test
+            current_address_bit = 1
+            for i in range(adress_size):
+                set_to = "error"
+                if address & current_address_bit:
+                    set_to = "high"
+                    gpio.set_pin_high(pins_to_linear.get_inverted_mapped_value(address_array[i])) # counting from zero
+                else:
+                    set_to = "low"
+                    gpio.set_pin_low(pins_to_linear.get_inverted_mapped_value(address_array[i])) # counting from zero
+                
+                print("Setting Pin with adress index " + str(i) 
+                        + ", linear ID " + str(address_array[i])
+                        + ", GPIO ID " + str(pins_to_linear.get_inverted_mapped_value(address_array[i]))
+                        + " to " + set_to)
+                print(current_address_bit)
+                print(address & current_address_bit)
+                current_address_bit = current_address_bit << 1
+            time.sleep(1)
+
+            for output in output_array:
+                level = ""
+                if gpio.read_pin(pins_to_linear.get_inverted_mapped_value(output))
+                    level = "high"
+                else:
+                    level = "low"
+                print("Channel " + str(pins_to_linear.get_mapped_value(output)) + " is " + level)
+            time.sleep(1)
 
     global size
 
