@@ -33,6 +33,7 @@ def main():
         read_output_pins()
 
         time.sleep(20)
+        gpio.gpio_deinit()
         exit(0)
 
 
@@ -54,6 +55,8 @@ def main():
         address += 1
         if address == 16:
             address = 0
+
+    gpio.gpio_deinit()
 
     """
     global size
