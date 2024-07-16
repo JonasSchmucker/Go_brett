@@ -144,4 +144,14 @@ def get_stones():
 """
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except KeyboardInterrupt: # If CTRL+C is pressed, exit cleanly:
+        print("Keyboard interrupt")
+
+    except:
+        print("some error") 
+
+    finally:
+        print("clean up") 
+    gpio.gpio_deinit()
