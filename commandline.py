@@ -149,9 +149,6 @@ if __name__ == "__main__":
     except KeyboardInterrupt: # If CTRL+C is pressed, exit cleanly:
         print("Keyboard interrupt")
 
-    except:
-        print("some error") 
-
     finally:
         print("clean up") 
     gpio.gpio_deinit()
