@@ -24,11 +24,16 @@ def main():
     init_lines()
 
     if args.test:
+        print("Testing Multiplexer output " + str(args.test))
+
         write_address(args.test)
 
         time.sleep(1)
 
         read_output_pins()
+
+        time.sleep(20)
+        exit(0)
 
 
     while True:
