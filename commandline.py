@@ -59,30 +59,9 @@ def main():
         gpio.gpio_deinit()
         exit(0)
 
-    """
-    while True:
-        print("Testing Multiplexer output " + str(address))
-
-        # init_lines()
-
-        write_address(address)
-
-        time.sleep(1)
-
-        read_output_pins()
-        
-        # pull_down_lines()
-
-
-        time.sleep(1)
-        address += 1
-        if address == 16:
-            address = 0
-
-    """
 
     stones.init_stones()
-    print_board(get_stones())
+    
     loop_counter = 0
     while True:
         logging.warning("Running Loop " + str(loop_counter))

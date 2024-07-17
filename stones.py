@@ -95,8 +95,8 @@ def get_stones() -> list[(int, int)]:
     return stones
 
 def get_stone(x: int, y: int) -> bool:
-    write_address(x, True)
-    write_address(y, False)
+    write_address(x, True) # Out
+    write_address(y, False) # In
     time.sleep(__READ_DELAY_SECONDS__)
     is_stone = gpio.read_pin(__GPIO_PIN_STONES_OUT__)
     stone_string = "" if is_stone else "NO "
