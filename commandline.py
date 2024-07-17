@@ -27,6 +27,9 @@ verbosity_levels = {
 def main():
     args = handle_args()
 
+    global size
+    aize = args.size
+    
     # Set the logging level
     logging_level = verbosity_levels.get(args.verbosity, logging.DEBUG)
 
@@ -79,7 +82,7 @@ def main():
         loop()
         time.sleep(10)
     
-
+"""
 def write_address(address):
     current_address_bit = 1
     for i in range(adress_size):
@@ -113,6 +116,8 @@ def pull_down_lines():
     for key in gpio.pin_to_linear_mapping:
         gpio.set_pin_as_output(key)
         gpio.set_pin_low(key)
+
+"""       
 
 def print_board(stones_list: list[(int, int)]):
     start = int((__MAX_BOARDSIZE__ - size) / 2)
