@@ -101,4 +101,4 @@ def get_stone(x: int, y: int) -> bool:
     is_stone = gpio.read_pin(__GPIO_PIN_STONES_OUT__)
     stone_string = "" if is_stone else "NO "
     logging.info("Detected " + stone_string + " stone at x=" + str(x) + ", y=" + str(y))
-    return 
+    return is_stone
