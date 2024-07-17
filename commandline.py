@@ -28,7 +28,7 @@ def main():
     args = handle_args()
 
     global size
-    aize = args.size
+    size = args.size
     
     # Set the logging level
     logging_level = verbosity_levels.get(args.verbosity, logging.DEBUG)
@@ -77,8 +77,11 @@ def main():
     """
 
     stones.init_stones()
+    logging.warn("Finished initialising stones")
 
+    loop_counter = 0
     while True:
+        logging.warn("Running Loop " + str(loop_counter))
         loop()
         time.sleep(10)
     
