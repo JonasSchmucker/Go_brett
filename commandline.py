@@ -88,7 +88,7 @@ def main():
         logging.warning("Running Loop " + str(loop_counter))
         loop()
         time.sleep(10)
-        loop += 1
+        loop_counter += 1
     
 
 def print_board(stones_list: list[(int, int)]):
