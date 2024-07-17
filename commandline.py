@@ -1,5 +1,6 @@
 #! /usr/bin/python3
 
+import random
 import time
 import stones, gpio
 # import leds
@@ -81,7 +82,7 @@ def main():
     """
 
     stones.init_stones()
-
+    print_board(get_stones())
     loop_counter = 0
     while True:
         logging.warning("Running Loop " + str(loop_counter))
@@ -115,9 +116,6 @@ def handle_args():
     parser.add_argument('-o', '--output', type=str, default='go_board.log', help='Set the logging output file')
 
     return parser.parse_args()
-"""
-def init_stones():
-    return
 
 def get_stones():
     stones_list = list()
@@ -126,7 +124,6 @@ def get_stones():
             if random.random() < 0.1:
                 stones_list += [(x, y)]
     return stones_list
-"""
 
 if __name__ == "__main__":
     try:
