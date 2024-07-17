@@ -1,7 +1,7 @@
 #! /usr/bin/python3
 
 import time
-import stones, gpio, pins_to_linear
+import stones, gpio
 # import leds
 import argparse
 
@@ -76,14 +76,14 @@ def write_address(address):
         set_to = "error"
         if address & current_address_bit:
             set_to = "high"
-            gpio.set_pin_high(pins_to_linear.get_inverted_mapped_value(address_array[i])) # counting from zero
+            gpio.set_pin_high(gpio.get_inverted_mapped_value(address_array[i])) # counting from zero
         else:
             set_to = "low"
-            gpio.set_pin_low(pins_to_linear.get_inverted_mapped_value(address_array[i])) # counting from zero
+            gpio.set_pin_low(gpio.get_inverted_mapped_value(address_array[i])) # counting from zero
             
         print("Setting Pin with adress index " + str(i) 
                     + ", linear ID " + str(address_array[i])
-                    + ", GPIO ID " + str(pins_to_linear.get_inverted_mapped_value(address_array[i]))
+                    + ", GPIO ID " + str(gpio.get_inverted_mapped_value(address_array[i]))
                     + " to " + set_to)
         print(current_address_bit)
         print(address & current_address_bit)
@@ -92,20 +92,20 @@ def write_address(address):
 def read_output_pins():
     for output in output_array:
         level = ""
-        if gpio.read_pin(pins_to_linear.get_inverted_mapped_value(output)):
+        if gpio.read_pin(gpio.get_inverted_mapped_value(output)):
             level = "high"
         else:
             level = "low"
         print("Channel " + str(output) + " is " + level)
 def init_lines():
     for i in range(adress_size):
-        gpio.set_pin_as_output(pins_to_linear.get_inverted_mapped_value(address_array[i]))
+        gpio.set_pin_as_output(gpio.get_inverted_mapped_value(address_array[i]))
 
     for output in output_array:
-        gpio.set_pin_as_input(pins_to_linear.get_inverted_mapped_value(output))
+        gpio.set_pin_as_input(gpio.get_inverted_mapped_value(output))
     
 def pull_down_lines():
-    for key in pins_to_linear.pin_to_linear_mapping:
+    for key in gpio.pin_to_linear_mapping:
         gpio.set_pin_as_output(key)
         gpio.set_pin_low(key)
 
