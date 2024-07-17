@@ -98,4 +98,7 @@ def get_stone(x: int, y: int) -> bool:
     write_address(x, True)
     write_address(y, False)
     time.sleep(__READ_DELAY_SECONDS__)
-    return gpio.read_pin(__GPIO_PIN_STONES_OUT__)
+    is_stone = gpio.read_pin(__GPIO_PIN_STONES_OUT__)
+    stone_string = "" if is_stone else "NO "
+    logging.info("Detected " + stone_string + " stone at x=" + str(x) + ", y=" + str(y))
+    return 
