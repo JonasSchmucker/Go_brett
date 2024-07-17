@@ -43,7 +43,7 @@ def main():
 
     if args.test:
         address = args.test
-        print("Testing Multiplexer address " + address)
+        print("Testing Multiplexer address " + str(address))
 
         stones.write_address(address, False)
         stones.write_address(address, True)
@@ -51,6 +51,7 @@ def main():
         time.sleep(1)
 
         signal = gpio.read_pin(stones.__GPIO_PIN_STONES_OUT__)
+        print("Signal is " + ("high" if signal else "low"))
 
         time.sleep(20)
         gpio.gpio_deinit()
