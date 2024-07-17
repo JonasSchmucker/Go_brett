@@ -12,6 +12,7 @@ __MAX_BOARDSIZE__ = 19
 def loop():
     # stones_list = get_stones()
     stones_list = stones.get_stones()
+    logging.info(str(stones_list))
     print_board(stones_list)
 
 
