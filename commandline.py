@@ -38,23 +38,25 @@ def main():
                     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
                     handlers=[logging.FileHandler(args.output)])
 
-    """
+    
     stones.init_stones()
 
     if args.test:
-        print("Testing Multiplexer output " + str(args.test))
+        address = args.test
+        print("Testing Multiplexer address " + address)
 
-        write_address(args.test)
+        stones.write_address(address, False)
+        stones.write_address(address, True)
 
         time.sleep(1)
 
-        read_output_pins()
+        signal = gpio.read_pin(stones.__GPIO_PIN_STONES_OUT__)
 
         time.sleep(20)
         gpio.gpio_deinit()
         exit(0)
 
-
+    """
     while True:
         print("Testing Multiplexer output " + str(address))
 
@@ -77,11 +79,11 @@ def main():
     """
 
     stones.init_stones()
-    logging.warn("Finished initialising stones")
+    logging.warning("Finished initialising stones")
 
     loop_counter = 0
     while True:
-        logging.warn("Running Loop " + str(loop_counter))
+        logging.warning("Running Loop " + str(loop_counter))
         loop()
         time.sleep(10)
     
