@@ -50,10 +50,11 @@ def main():
 
         time.sleep(1)
 
-        signal = gpio.read_pin(stones.__GPIO_PIN_STONES_OUT__)
-        print("Signal is " + ("high" if signal else "low"))
-
-        time.sleep(40)
+        for i in range(40):
+            signal = gpio.read_pin(stones.__GPIO_PIN_STONES_OUT__)
+            print("Signal is " + ("high" if signal else "low"))
+            time.sleep(1)
+            
         gpio.gpio_deinit()
         exit(0)
 
