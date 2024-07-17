@@ -33,8 +33,7 @@ def main():
     # Configure logging
     logging.basicConfig(level=logging_level,
                     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-                    handlers=[logging.FileHandler(args.output),
-                              logging.StreamHandler()])
+                    handlers=[logging.FileHandler(args.output)])
 
     """
     stones.init_stones()
