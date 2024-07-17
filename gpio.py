@@ -7,26 +7,26 @@ def gpio_init_mode() -> None:
 
 def set_pin_as_output(pin_number: int) -> None:
 
-    GPIO.setup(pin_number, GPIO.OUT)
+    GPIO.setup(get_inverted_mapped_value(pin_number), GPIO.OUT)
 
 def set_pin_as_input(pin_number: int) -> None:
 
-    GPIO.setup(pin_number, GPIO.IN)
+    GPIO.setup(get_inverted_mapped_value(pin_number), GPIO.IN)
 
 def set_pin_high(pin_number: int) -> None:
 
-    GPIO.output(pin_number, GPIO.HIGH)
+    GPIO.output(get_inverted_mapped_value(pin_number), GPIO.HIGH)
 
 def set_pin_low(pin_number: int) -> None:
 
-    GPIO.output(pin_number, GPIO.LOW)
+    GPIO.output(get_inverted_mapped_value(pin_number), GPIO.LOW)
 
 def gpio_deinit() -> None:
     GPIO.cleanup()
 
 def read_pin(pin_number: int) -> bool:
 
-    input_state = GPIO.input(pin_number)
+    input_state = GPIO.input(get_inverted_mapped_value(pin_number))
     
     if input_state == GPIO.HIGH:
         return True
@@ -35,7 +35,7 @@ def read_pin(pin_number: int) -> bool:
     
 # Define the original static dictionary that maps numbers to numbers
 pin_to_linear_mapping = {
-    # 3V
+    # 3,3V
     2: 1,
     3: 2,
     4: 3,

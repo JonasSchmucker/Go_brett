@@ -4,6 +4,7 @@ import time
 import stones, gpio
 # import leds
 import argparse
+import logging
 
 __MAX_BOARDSIZE__ = 19
 
@@ -12,16 +13,31 @@ def loop():
     stones_list = stones.get_stones()
     print_board(stones_list)
 
-adress_size = 4
-address_array = [23, 24, 25, 27]
-output_array = [14, 15, 16, 17, 18]
+
+# Map the verbosity level to the logging level
+verbosity_levels = {
+    0: logging.CRITICAL,
+    1: logging.ERROR,
+    2: logging.WARNING,
+    3: logging.INFO,
+    4: logging.DEBUG
+}
+
 
 def main():
     args = handle_args()
-    gpio.gpio_init_mode()
 
-    address = 0
-    init_lines()
+    # Set the logging level
+    logging_level = verbosity_levels.get(args.verbosity, logging.DEBUG)
+
+    # Configure logging
+    logging.basicConfig(level=logging_level,
+                    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+                    handlers=[logging.FileHandler(args.output),
+                              logging.StreamHandler()])
+
+    """
+    stones.init_stones()
 
     if args.test:
         print("Testing Multiplexer output " + str(args.test))
@@ -56,19 +72,14 @@ def main():
         if address == 16:
             address = 0
 
-    gpio.gpio_deinit()
-
     """
-    global size
 
-    size = args.size
-    # init_stones()
     stones.init_stones()
 
     while True:
         loop()
-        time.sleep(0.5)
-    """
+        time.sleep(10)
+    
 
 def write_address(address):
     current_address_bit = 1
@@ -76,10 +87,10 @@ def write_address(address):
         set_to = "error"
         if address & current_address_bit:
             set_to = "high"
-            gpio.set_pin_high(gpio.get_inverted_mapped_value(address_array[i])) # counting from zero
+            gpio.set_pin_high(address_array[i]) # counting from zero
         else:
             set_to = "low"
-            gpio.set_pin_low(gpio.get_inverted_mapped_value(address_array[i])) # counting from zero
+            gpio.set_pin_low(address_array[i]) # counting from zero
             
         print("Setting Pin with adress index " + str(i) 
                     + ", linear ID " + str(address_array[i])
@@ -92,17 +103,12 @@ def write_address(address):
 def read_output_pins():
     for output in output_array:
         level = ""
-        if gpio.read_pin(gpio.get_inverted_mapped_value(output)):
+        if gpio.read_pin(outpuT):
             level = "high"
         else:
             level = "low"
         print("Channel " + str(output) + " is " + level)
-def init_lines():
-    for i in range(adress_size):
-        gpio.set_pin_as_output(gpio.get_inverted_mapped_value(address_array[i]))
 
-    for output in output_array:
-        gpio.set_pin_as_input(gpio.get_inverted_mapped_value(output))
     
 def pull_down_lines():
     for key in gpio.pin_to_linear_mapping:
@@ -129,6 +135,10 @@ def handle_args():
     parser.add_argument("-s", "--size", type=int, choices=[9, 13, __MAX_BOARDSIZE__], default=__MAX_BOARDSIZE__,
                         help="Size of milliseconds to wait. Default is " + str(__MAX_BOARDSIZE__) + ", also accepts 9 and 13.")
     parser.add_argument("-t", "--test", type=int, help="Test by setting the given GPIO Pin high")
+    parser.add_argument('-v', '--verbosity', type=int, choices=range(0, 5),
+                    default=5, help='Set the logging verbosity level: 0=CRITICAL, 1=ERROR, 2=WARNING, 3=INFO, 4=DEBUG')
+    parser.add_argument('-o', '--output', type=str, default='go_board.log', help='Set the logging output file')
+
     return parser.parse_args()
 """
 def init_stones():
