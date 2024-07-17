@@ -13,7 +13,7 @@ __GPIO_MUL_ADDRESS_SIZE__ = 4
 __GPIO_MUL_MAX_ADDRESS__= 16
 __GPIO_BOARD_SIZE__ = 19
 
-__READ_DELAY_SECONDS__ = 0.05
+__READ_DELAY_SECONDS__ = 0.01
 
 def write_address(address: int, direction_out: bool):
     if address >= __GPIO_BOARD_SIZE__ or address < 0:
