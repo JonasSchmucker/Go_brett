@@ -53,7 +53,7 @@ def main():
         signal = gpio.read_pin(stones.__GPIO_PIN_STONES_OUT__)
         print("Signal is " + ("high" if signal else "low"))
 
-        time.sleep(20)
+        time.sleep(40)
         gpio.gpio_deinit()
         exit(0)
 
@@ -87,42 +87,6 @@ def main():
         loop()
         time.sleep(10)
     
-"""
-def write_address(address):
-    current_address_bit = 1
-    for i in range(adress_size):
-        set_to = "error"
-        if address & current_address_bit:
-            set_to = "high"
-            gpio.set_pin_high(address_array[i]) # counting from zero
-        else:
-            set_to = "low"
-            gpio.set_pin_low(address_array[i]) # counting from zero
-            
-        print("Setting Pin with adress index " + str(i) 
-                    + ", linear ID " + str(address_array[i])
-                    + ", GPIO ID " + str(gpio.get_inverted_mapped_value(address_array[i]))
-                    + " to " + set_to)
-        print(current_address_bit)
-        print(address & current_address_bit)
-        current_address_bit = current_address_bit << 1
-
-def read_output_pins():
-    for output in output_array:
-        level = ""
-        if gpio.read_pin(outpuT):
-            level = "high"
-        else:
-            level = "low"
-        print("Channel " + str(output) + " is " + level)
-
-    
-def pull_down_lines():
-    for key in gpio.pin_to_linear_mapping:
-        gpio.set_pin_as_output(key)
-        gpio.set_pin_low(key)
-
-"""       
 
 def print_board(stones_list: list[(int, int)]):
     start = int((__MAX_BOARDSIZE__ - size) / 2)
