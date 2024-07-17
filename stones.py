@@ -83,6 +83,7 @@ def init_stones():
 
     write_address(0, True)
     write_address(0, False)
+    logging.warning("Finished initialising stones")
 
 
 def get_stones() -> list[(int, int)]:

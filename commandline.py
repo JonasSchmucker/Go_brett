@@ -45,8 +45,8 @@ def main():
         address = args.test
         print("Testing Multiplexer address " + str(address))
 
-        stones.write_address(address, False)
-        stones.write_address(address, True)
+        stones.write_address(15 - address, False) # in
+        stones.write_address(address, True) # out
 
         time.sleep(1)
 
@@ -80,7 +80,6 @@ def main():
     """
 
     stones.init_stones()
-    logging.warning("Finished initialising stones")
 
     loop_counter = 0
     while True:
