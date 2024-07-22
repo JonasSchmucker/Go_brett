@@ -67,11 +67,12 @@ def main():
     while True:
         logging.warning("Running Loop " + str(loop_counter))
         loop()
-        time.sleep(10)
+        # time.sleep(10)
         loop_counter += 1
     
 
 def print_board(stones_list: list[(int, int)]):
+    print()
     start = int((__MAX_BOARDSIZE__ - size) / 2)
     end = start + size
     for y in range(size):
