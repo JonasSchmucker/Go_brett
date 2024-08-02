@@ -21,7 +21,8 @@ def write_address(address: int, direction_out: bool):
         return
     direction_string = ""
     multiplexer_string = ""
-    if address >= __GPIO_MUL_MAX_ADDRESS__:
+    #if address >= __GPIO_MUL_MAX_ADDRESS__:
+    if address < __GPIO_MUL_MAX_ADDRESS__:
         multiplexer_string = "2"
         address -= __GPIO_MUL_MAX_ADDRESS__
         if direction_out:
