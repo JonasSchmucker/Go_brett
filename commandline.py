@@ -8,6 +8,8 @@ import argparse
 import logging
 
 __MAX_BOARDSIZE__ = 19
+__CLEAR_TERMINAL_STRING__ = "\033[H\033[J"
+
 
 def loop():
     # stones_list = get_stones()
@@ -72,7 +74,7 @@ def main():
     
 
 def print_board(stones_list: list[(int, int)]):
-    print()
+    print(__CLEAR_TERMINAL_STRING__, end="")
     start = int((__MAX_BOARDSIZE__ - size) / 2)
     end = start + size
     for y in range(size):
